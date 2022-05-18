@@ -39,7 +39,7 @@
             android:padding="12dp"
             android:id="@+id/rv_task"
             android:background="@drawable/recycler_back"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     </LinearLayout>
 
