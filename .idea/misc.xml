@@ -7,6 +7,8 @@
         <entry key="app/src/main/res/drawable/btn_bck.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/normal_back.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/recycler_back.xml" value="0.15908000329265984" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/task_item.xml" value="0.16770833333333332" />
       </map>
     </option>
   </component>
