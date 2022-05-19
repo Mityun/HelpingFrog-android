@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
     <color name="coral">#DF5757</color>
+    <color name="coral_bl">#FF9090</color>
     <color name="main_color">#073865</color>
     <color name="deepestOceanMist">#083E71</color>
     <color name="teal_700">#FF018786</color>
