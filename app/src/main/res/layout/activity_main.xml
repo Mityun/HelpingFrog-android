@@ -11,7 +11,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/btn_add_task"
-        android:background="@drawable/bd_add"
+        android:background="@drawable/ic_bd_add"
         android:layout_gravity="right|bottom"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="50dp" />
@@ -33,13 +33,13 @@
             android:layout_margin="12dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_task"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="5"
-            android:padding="12dp"
-            android:id="@+id/rv_task"
             android:background="@drawable/recycler_back"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            android:padding="12dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </LinearLayout>
 

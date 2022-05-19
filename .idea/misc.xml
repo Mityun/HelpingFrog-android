@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/drawable/bd_add.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/bd_add.xml" value="0.45" />
         <entry key="app/src/main/res/drawable/btn_bck.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/ic_bd_add.xml" value="0.5" />
         <entry key="app/src/main/res/drawable/normal_back.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/recycler_back.xml" value="0.15908000329265984" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
