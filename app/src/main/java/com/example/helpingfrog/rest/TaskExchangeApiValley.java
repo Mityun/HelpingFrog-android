@@ -13,6 +13,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.helpingfrog.MainActivity;
 import com.example.helpingfrog.domain.Task;
 import com.example.helpingfrog.mapper.TaskMapper;
 import com.example.helpingfrog.noDb.NoDb;
@@ -60,6 +61,8 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
                                 Task task = TaskMapper.taskFromJson(jsonObject);
                                 NoDb.TASK_LIST.add(task);
                             }
+
+                            ((MainActivity)context).updateAdapter();
 
                             Log.d(API_TEST, NoDb.TASK_LIST.toString());
                         } catch (JSONException e) {
