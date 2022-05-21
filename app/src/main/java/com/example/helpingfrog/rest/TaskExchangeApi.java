@@ -19,6 +19,8 @@ public interface TaskExchangeApi {
             String newImportanceName
     );
 
+    void deleteTask(int id);
+
 
 
 
