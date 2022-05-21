@@ -8,6 +8,7 @@
     android:background="@color/main_color">
 
     <androidx.appcompat.widget.AppCompatButton
+        android:stateListAnimator="@null"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/btn_add_task"

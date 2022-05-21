@@ -130,5 +130,25 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
     @Override
     public void deleteTask(int id) {
 
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+        String url = BASE_URL + "/task" + "/" + id;
+
+        StringRequest request = new StringRequest(
+                Request.Method.DELETE,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        fillTask();
+                        Log.d(API_TEST, response);
+                    }
+                },
+                errorListener
+        );
+
+        requestQueue.add(request);
+
     }
 }
+
