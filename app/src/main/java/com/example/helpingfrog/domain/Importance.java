@@ -22,4 +22,12 @@ public class Importance {
     public String getName() {
         return name;
     }
+
+    @Override
+    public String toString() {
+        return "Importance{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

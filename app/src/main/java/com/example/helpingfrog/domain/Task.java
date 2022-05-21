@@ -48,5 +48,15 @@ public class Task {
     public List<Comment> getCommentList() {
         return commentList;
     }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", author=" + author +
+                ", importance=" + importance +
+                '}';
+    }
 }
 
