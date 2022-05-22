@@ -9,4 +9,5 @@
     <string name="add">add</string>
     <string name="redact_task">redact task</string>
     <string name="accept">accept</string>
+    <string name="title">title</string>
 </resources>

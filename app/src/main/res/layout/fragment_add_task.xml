@@ -6,6 +6,7 @@
     android:clickable="true"
     android:focusable="true"
     tools:context="fragment.AddTaskFragment"
+    android:background="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
@@ -28,9 +29,19 @@
         android:textColor="@color/black"/>
 
     <EditText
+        android:id="@+id/et_taskName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"/>
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/btn_bck"
+        android:gravity="center"
+        android:hint="@string/title"
+        android:padding="12dp"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="italic"/>
 
 
     <TextView

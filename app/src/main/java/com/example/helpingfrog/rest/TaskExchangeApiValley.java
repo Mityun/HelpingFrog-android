@@ -14,7 +14,11 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.helpingfrog.MainActivity;
+import com.example.helpingfrog.domain.Author;
+import com.example.helpingfrog.domain.Importance;
 import com.example.helpingfrog.domain.Task;
+import com.example.helpingfrog.mapper.AuthorMapper;
+import com.example.helpingfrog.mapper.ImportanceMapper;
 import com.example.helpingfrog.mapper.TaskMapper;
 import com.example.helpingfrog.noDb.NoDb;
 
@@ -78,11 +82,74 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
 
     @Override
     public void fillAuthor() {
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+        String url = BASE_URL + "/author";
+
+        JsonArrayRequest arrayRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+
+                        NoDb.AUTHOR_LIST.clear();
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+
+                                JSONObject jsonObject = response.getJSONObject(i);
+                                Author author = AuthorMapper.authorFromJson(jsonObject);
+                                NoDb.AUTHOR_LIST.add(author);
+                            }
+
+                            Log.d(API_TEST, NoDb.AUTHOR_LIST.toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                errorListener
+        );
+
+        requestQueue.add(arrayRequest);
 
     }
 
     @Override
     public void fillImportance() {
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+        String url = BASE_URL + "/importance";
+
+        JsonArrayRequest arrayRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+
+                        NoDb.IMPORTANCE_LIST.clear();
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+
+                                JSONObject jsonObject = response.getJSONObject(i);
+                                Importance importance = ImportanceMapper.importanceFromJson(jsonObject);
+                                NoDb.IMPORTANCE_LIST.add(importance);
+                            }
+
+                            Log.d(API_TEST, NoDb.IMPORTANCE_LIST.toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                errorListener
+        );
+
+        requestQueue.add(arrayRequest);
 
     }
 
@@ -124,6 +191,37 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
 
     @Override
     public void updateTask(int id, String newTaskName, String newAuthorName, String newImportanceName) {
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+        String url = BASE_URL + "/task/" + id;
+
+        StringRequest request = new StringRequest(
+                Request.Method.PUT,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        fillTask();
+                        Log.d(API_TEST, response);
+                    }
+                },
+                errorListener
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map <String, String> params = new HashMap<>();
+
+                params.put("nameTask", newTaskName);
+                params.put("nameAuthor", newAuthorName);
+                params.put("nameImportance", newImportanceName);
+                return params;
+            }
+        };
+
+        requestQueue.add(request);
 
     }
 
