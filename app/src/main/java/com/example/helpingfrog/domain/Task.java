@@ -13,21 +13,18 @@ public class Task implements Serializable {
 
     private Importance importance;
 
-    private List<Comment> commentList;
 
-    public Task(int id, String name, Author author, Importance importance, List<Comment> commentList) {
+    public Task(int id, String name, Author author, Importance importance) {
         this.id = id;
         this.name = name;
         this.author = author;
         this.importance = importance;
-        this.commentList = commentList;
     }
 
-    public Task(String name, Author author, Importance importance, List<Comment> commentList) {
+    public Task(String name, Author author, Importance importance) {
         this.name = name;
         this.author = author;
         this.importance = importance;
-        this.commentList = commentList;
     }
 
     public int getId() {
@@ -44,10 +41,6 @@ public class Task implements Serializable {
 
     public Importance getImportance() {
         return importance;
-    }
-
-    public List<Comment> getCommentList() {
-        return commentList;
     }
 
     @Override

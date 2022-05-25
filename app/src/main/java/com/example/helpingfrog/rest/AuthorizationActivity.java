@@ -1,4 +1,4 @@
-package com.example.helpingfrog;
+package com.example.helpingfrog.rest;
 
 public class AuthorizationActivity {
 }

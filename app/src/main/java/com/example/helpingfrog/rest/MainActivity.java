@@ -1,4 +1,4 @@
-package com.example.helpingfrog;
+package com.example.helpingfrog.rest;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.helpingfrog.R;
 import com.example.helpingfrog.adapter.TaskAdapter;
 import com.example.helpingfrog.domain.Author;
 import com.example.helpingfrog.domain.Importance;

@@ -17,8 +17,7 @@ public class TaskMapper {
                     jsonObject.getInt("id"),
                     jsonObject.getString("name"),
                     AuthorMapper.authorFromTaskJson(jsonObject),
-                    ImportanceMapper.importanceFromTaskJson(jsonObject),
-                    null
+                    ImportanceMapper.importanceFromTaskJson(jsonObject)
             );
         } catch (JSONException e) {
             e.printStackTrace();

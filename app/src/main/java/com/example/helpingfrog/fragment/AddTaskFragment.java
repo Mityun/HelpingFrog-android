@@ -55,8 +55,7 @@ public class AddTaskFragment extends Fragment {
                         new Task(
                                 etTaskNAme.getText().toString(),
                                 ((Author)spAuthor.getSelectedItem()),
-                                ((Importance)spImportance.getSelectedItem()),
-                                null
+                                ((Importance)spImportance.getSelectedItem())
                         )
                 );
 
