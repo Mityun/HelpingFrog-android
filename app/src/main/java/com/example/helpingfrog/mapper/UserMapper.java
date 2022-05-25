@@ -16,7 +16,7 @@ public class UserMapper {
             user = new User(
                     jsonObject.getInt("id"),
                     jsonObject.getString("login"),
-                    jsonObject.getInt("password"),
+                    jsonObject.getString("password"),
                     jsonObject.getInt("totalHours")
             );
         } catch (JSONException e) {
