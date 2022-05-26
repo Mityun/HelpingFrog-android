@@ -60,7 +60,13 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
                             for (int i = 0; i < response.length(); i++) {
 
                                 JSONObject jsonObject = response.getJSONObject(i);
-                                Task task = TaskMapper.taskFromJson(jsonObject);
+
+                                Importance importance = new ImportanceMapper().importanceFromTaskJson(jsonObject);
+
+                                Author author = new AuthorMapper().authorFromTaskJson(jsonObject);
+
+                                Task task = new TaskMapper().taskFromJson(jsonObject, author, importance);
+                                NoDb.TASK_LIST.add(task);
                                 NoDb.TASK_LIST.add(task);
                             }
 

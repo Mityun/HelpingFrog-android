@@ -64,7 +64,7 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        Task task = NoDb.TASK_LIST.get(position);
+        Task task = taskList.get(position);
 
         ((MyHolder)holder).tvName.setText(task.getName());
         ((MyHolder)holder).tvAuthor.setText(task.getAuthor().getName());
@@ -78,12 +78,11 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(TASK_KEY, task);
-
                 changeTaskFragment.setArguments(bundle);
 
                 ((AppCompatActivity)context).getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.fl_main,changeTaskFragment)
+                        .add(R.id.fl_main, changeTaskFragment)
                         .commit();
             }
         });

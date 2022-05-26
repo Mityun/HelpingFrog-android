@@ -19,4 +19,7 @@
     <string name="sign_up">sign up</string>
     <string name="auth">wrong login or password type!</string>
     <string name="or">or</string>
+    <string name="login_name">Login_name</string>
+    <string name="choose_image">choose image</string>
+    <string name="my_nfts">My NFTs:</string>
 </resources>
