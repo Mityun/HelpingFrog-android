@@ -6,14 +6,22 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/drawable/bd_add.xml" value="0.45" />
         <entry key="app/src/main/res/drawable/btn_bck.xml" value="0.18385416666666668" />
-        <entry key="app/src/main/res/drawable/ic_bd_add.xml" value="0.5" />
+        <entry key="app/src/main/res/drawable/btn_bck_coral.xml" value="0.3260416666666667" />
+        <entry key="app/src/main/res/drawable/btn_burg_menu.xml" value="0.3260416666666667" />
+        <entry key="app/src/main/res/drawable/btn_message_style.xml" value="0.3260416666666667" />
+        <entry key="app/src/main/res/drawable/ic_bd_add.xml" value="0.21199677294115896" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/drawable/normal_back.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/recycler_back.xml" value="0.15908000329265984" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
+        <entry key="app/src/main/res/drawable/welcome_back.xml" value="0.3260416666666667" />
+        <entry key="app/src/main/res/layout/activity_authorization.xml" value="0.250585776948041" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_main_data.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/activity_welcome.xml" value="0.34164450961360876" />
         <entry key="app/src/main/res/layout/fragment_add_task.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_change_task.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/rv_item_for_nft.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/spinner_item.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/task_item.xml" value="0.25" />
       </map>

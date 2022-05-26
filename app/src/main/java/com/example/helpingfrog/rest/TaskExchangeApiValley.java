@@ -9,11 +9,9 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.helpingfrog.MainActivity;
 import com.example.helpingfrog.domain.Author;
 import com.example.helpingfrog.domain.Importance;
 import com.example.helpingfrog.domain.Task;
@@ -62,7 +60,13 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
                             for (int i = 0; i < response.length(); i++) {
 
                                 JSONObject jsonObject = response.getJSONObject(i);
-                                Task task = TaskMapper.taskFromJson(jsonObject);
+
+                                Importance importance = new ImportanceMapper().importanceFromTaskJson(jsonObject);
+
+                                Author author = new AuthorMapper().authorFromTaskJson(jsonObject);
+
+                                Task task = new TaskMapper().taskFromJson(jsonObject, author, importance);
+                                NoDb.TASK_LIST.add(task);
                                 NoDb.TASK_LIST.add(task);
                             }
 

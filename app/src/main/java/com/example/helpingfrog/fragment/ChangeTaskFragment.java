@@ -2,7 +2,6 @@ package com.example.helpingfrog.fragment;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.fragment.app.Fragment;
@@ -11,9 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.example.helpingfrog.MainActivity;
 import com.example.helpingfrog.R;
 import com.example.helpingfrog.adapter.AuthorSpinnerAdapter;
 import com.example.helpingfrog.adapter.ImportanceSpinnerAdapter;

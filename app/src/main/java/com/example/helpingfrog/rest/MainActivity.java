@@ -1,4 +1,4 @@
-package com.example.helpingfrog;
+package com.example.helpingfrog.rest;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.helpingfrog.R;
 import com.example.helpingfrog.adapter.TaskAdapter;
 import com.example.helpingfrog.domain.Author;
 import com.example.helpingfrog.domain.Importance;
@@ -35,6 +36,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        taskExchangeApiValley = new TaskExchangeApiValley(this);
+        taskExchangeApiValley.fillAuthor();
+        taskExchangeApiValley.fillImportance();
+        taskExchangeApiValley.fillTask();
+
+        rvTask = findViewById(R.id.rv_task);
+
+        taskAdapter = new TaskAdapter(this, NoDb.TASK_LIST);
+        rvTask.setAdapter(taskAdapter);
+
         btnAdd = findViewById(R.id.btn_add_task);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,19 +55,11 @@ public class MainActivity extends AppCompatActivity {
 
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.fl_main, addTaskFragment);
+                        .add(R.id.fl_main, addTaskFragment)
+                .commit();
             }
         });
 
-        taskExchangeApiValley = new TaskExchangeApiValley(this);
-        taskExchangeApiValley.fillTask();
-        taskExchangeApiValley.fillAuthor();
-        taskExchangeApiValley.fillImportance();
-
-        rvTask = findViewById(R.id.rv_task);
-
-        taskAdapter = new TaskAdapter(this, NoDb.TASK_LIST);
-        rvTask.setAdapter(taskAdapter);
 
         simpleCallback = new ItemTouchHelper.SimpleCallback(
                 0,
@@ -103,5 +106,10 @@ public class MainActivity extends AppCompatActivity {
         } else {
             finish();
         }
+    }
+
+    public void update() {
+
+        taskAdapter.notifyDataSetChanged();
     }
 }
