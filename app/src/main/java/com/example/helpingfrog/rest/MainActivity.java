@@ -36,19 +36,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnAdd = findViewById(R.id.btn_add_task);
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                AddTaskFragment addTaskFragment = new AddTaskFragment();
-
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .add(R.id.fl_main, addTaskFragment);
-            }
-        });
-
         taskExchangeApiValley = new TaskExchangeApiValley(this);
         taskExchangeApiValley.fillAuthor();
         taskExchangeApiValley.fillImportance();
@@ -58,6 +45,21 @@ public class MainActivity extends AppCompatActivity {
 
         taskAdapter = new TaskAdapter(this, NoDb.TASK_LIST);
         rvTask.setAdapter(taskAdapter);
+
+        btnAdd = findViewById(R.id.btn_add_task);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AddTaskFragment addTaskFragment = new AddTaskFragment();
+
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.fl_main, addTaskFragment)
+                .commit();
+            }
+        });
+
 
         simpleCallback = new ItemTouchHelper.SimpleCallback(
                 0,
@@ -104,5 +106,10 @@ public class MainActivity extends AppCompatActivity {
         } else {
             finish();
         }
+    }
+
+    public void update() {
+
+        taskAdapter.notifyDataSetChanged();
     }
 }

@@ -46,8 +46,7 @@ public class AuthorizationActivity extends AppCompatActivity {
                     Toast.makeText(AuthorizationActivity.this, R.string.auth, Toast.LENGTH_LONG).show();
                 }
                 else{
-
-
+                    Toast.makeText(AuthorizationActivity.this, R.string.app_name, Toast.LENGTH_LONG).show();
                 }
 
             }

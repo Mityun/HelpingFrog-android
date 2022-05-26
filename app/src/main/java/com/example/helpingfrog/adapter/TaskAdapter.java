@@ -1,10 +1,12 @@
 package com.example.helpingfrog.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,10 +22,11 @@ import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    public static final String TASK_KEY = "Task";
+    public static final String TASK_KEY = "task";
     private final Context context;
     private final LayoutInflater inflater;
     private final List<Task> taskList;
+
 
     public TaskAdapter(Context context, List<Task> taskList) {
         this.context = context;
@@ -33,14 +36,20 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private class MyHolder extends RecyclerView.ViewHolder{
 
-        private TextView tvName, tvAuthor, tvImportance;
+        private TextView
+                tvName,
+                tvAuthor,
+                tvImportance;
+
+        private LinearLayout ll_item;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
 
+            ll_item = itemView.findViewById(R.id.ll_item);
             tvName = itemView.findViewById(R.id.tv_task_name);
-            tvAuthor = itemView.findViewById(R.id.tv_name_author);
-            tvImportance = itemView.findViewById(R.id.tv_name_importance);
+            tvAuthor = itemView.findViewById(R.id.tv_author_name);
+            tvImportance = itemView.findViewById(R.id.tv_importance_name);
         }
     }
 
@@ -53,7 +62,7 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         Task task = NoDb.TASK_LIST.get(position);
 
@@ -83,6 +92,7 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemCount() {
+
         return NoDb.TASK_LIST.size();
     }
 
