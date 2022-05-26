@@ -12,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.helpingfrog.MainActivity;
 import com.example.helpingfrog.domain.Author;
 import com.example.helpingfrog.domain.Importance;
 import com.example.helpingfrog.domain.Task;
@@ -26,6 +27,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TaskExchangeApiValley implements TaskExchangeApi{
 
@@ -42,6 +45,12 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
 
     @Override
     public void fillTask() {
+
+        for (int i = 0; i < 10; i++) {
+
+            NoDb.TASK_LIST.add(new Task("1", new Author(i, "N"), new Importance(i + 1, "S")));
+
+        }
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 

@@ -1,4 +1,4 @@
-package com.example.helpingfrog.rest;
+package com.example.helpingfrog;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

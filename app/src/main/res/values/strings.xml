@@ -22,4 +22,6 @@
     <string name="login_name">Login_name</string>
     <string name="choose_image">choose image</string>
     <string name="my_nfts">My NFTs:</string>
+    <string name="congrats">Successful authorization!!</string>
+    <string name="register">register</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.helpingfrog.rest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
@@ -13,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.toolbox.Volley;
 import com.example.helpingfrog.R;
 
-public class AuthorizationActivity extends AppCompatActivity {
+public class AuthorizationActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText auth_login;
 
@@ -40,19 +41,34 @@ public class AuthorizationActivity extends AppCompatActivity {
         register_password = findViewById(R.id.register_password);
         accept_register_btn = findViewById(R.id.btn_confirm_register);
 
-        accept_auth_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (auth_login.getText().toString().trim().equals("") | auth_login.getText().toString().trim().equals("")){
-
-                    Toast.makeText(AuthorizationActivity.this, R.string.auth, Toast.LENGTH_LONG).show();
-                }
-                else{
-                    Toast.makeText(AuthorizationActivity.this, R.string.app_name, Toast.LENGTH_LONG).show();
-                }
-
-            }
-        });
+        accept_auth_btn.setOnClickListener(this);
+        accept_register_btn.setOnClickListener(this);
 
     }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_confirm_auth:
+                if (auth_login.getText().toString().trim().equals("") & auth_password.getText().toString().trim().equals("")) {
+                    Toast.makeText(AuthorizationActivity.this, R.string.auth, Toast.LENGTH_LONG).show();
+                } else if(auth_login.getText().toString().trim().equals("Dsmrnvv") & auth_password.getText().toString().trim().equals("pass")){
+                    Toast.makeText(AuthorizationActivity.this, "Successful authorization!!", Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(AuthorizationActivity.this, ProfileActivity.class);
+                    startActivity(i);
+                }else{
+                    Toast.makeText(AuthorizationActivity.this, "can't find user!", Toast.LENGTH_LONG).show();
+                }
+
+            case R.id.btn_confirm_register:
+                if (register_login.getText().toString().trim().equals("") | register_password.getText().toString().trim().equals("")) {
+
+                    Toast.makeText(AuthorizationActivity.this, R.string.auth, Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(AuthorizationActivity.this, R.string.congrats, Toast.LENGTH_LONG).show();
+                }
+
+        }
+    }
+
 }

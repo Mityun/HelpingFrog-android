@@ -16,8 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.helpingfrog.R;
+import com.example.helpingfrog.adapter.StateAdapter;
+import com.example.helpingfrog.domain.State;
+import com.example.helpingfrog.noDb.NoDb;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -27,6 +31,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     private RecyclerView rvNft;
 
+    ArrayList<State> states = new ArrayList<State>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,13 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         rvNft = findViewById(R.id.rv_nft);
+
+        setInitialData();
+        RecyclerView recyclerView = findViewById(R.id.rv_nft);
+        // создаем адаптер
+        StateAdapter adapter = new StateAdapter(this, states);
+        // устанавливаем для списка адаптер
+        recyclerView.setAdapter(adapter);
 
         Button button = findViewById(R.id.btn_set_user_pic);
         button.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
             }
         });
+
     }
 
     @Override
@@ -65,5 +79,36 @@ public class ProfileActivity extends AppCompatActivity {
                     imageView.setImageBitmap(bitmap);
                 }
         }
+    }
+
+    // сохранение состояния
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//
+//        outState.putString(nameVariableKey, name);
+//        super.onSaveInstanceState(outState);
+//    }
+//    // получение ранее сохраненного состояния
+//    @Override
+//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//
+//        name = savedInstanceState.getString(nameVariableKey);
+//        nameView.setText(name);
+//    }
+
+    private void setInitialData(){
+
+        states.add(new State (R.drawable.frog_nft));
+        states.add(new State (R.drawable.frog_nft));
+        states.add(new State (R.drawable.frog_nft));
+        states.add(new State (R.drawable.frog_nft));
+        states.add(new State (R.drawable.frog_nft));
+        states.add(new State (R.drawable.frog_nft));
+        states.add(new State (R.drawable.frog_nft));
+        states.add(new State (R.drawable.frog_nft));
+        states.add(new State (R.drawable.frog_nft));
+        states.add(new State (R.drawable.frog_nft));
+        states.add(new State (R.drawable.frog_nft));
     }
 }
