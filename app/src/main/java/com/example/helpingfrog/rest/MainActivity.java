@@ -50,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         taskExchangeApiValley = new TaskExchangeApiValley(this);
-        taskExchangeApiValley.fillTask();
         taskExchangeApiValley.fillAuthor();
         taskExchangeApiValley.fillImportance();
+        taskExchangeApiValley.fillTask();
 
         rvTask = findViewById(R.id.rv_task);
 

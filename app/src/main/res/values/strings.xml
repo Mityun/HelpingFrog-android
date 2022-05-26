@@ -12,4 +12,11 @@
     <string name="title">title</string>
     <string name="welcome_to_helpingfrog">Welcome to HelpingFrog!</string>
     <string name="app_description">Our application will help you to start your volunteer journey and turn it into an exciting game! Complete tasks and get unique NFTs created by you as a reward!!</string>
+    <string name="login">login</string>
+    <string name="password">password</string>
+    <string name="sign_in">Sign in</string>
+    <string name="confirm">confirm</string>
+    <string name="sign_up">sign up</string>
+    <string name="auth">wrong login or password type!</string>
+    <string name="or">or</string>
 </resources>
