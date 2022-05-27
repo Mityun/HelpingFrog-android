@@ -50,12 +50,13 @@ public class AuthorizationActivity extends AppCompatActivity implements View.OnC
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_confirm_auth:
-                if (auth_login.getText().toString().trim().equals("") & auth_password.getText().toString().trim().equals("")) {
-                    Toast.makeText(AuthorizationActivity.this, R.string.auth, Toast.LENGTH_LONG).show();
+                if (auth_login.getText().toString().trim().equals("") | auth_password.getText().toString().trim().equals("")) {
+                    Toast.makeText(AuthorizationActivity.this, R.string.auth, Toast.LENGTH_SHORT).show();
                 } else if(auth_login.getText().toString().trim().equals("Dsmrnvv") & auth_password.getText().toString().trim().equals("pass")){
-                    Toast.makeText(AuthorizationActivity.this, "Successful authorization!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AuthorizationActivity.this, "Successful authorization!!", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(AuthorizationActivity.this, ProfileActivity.class);
                     startActivity(i);
+                    break;
                 }else{
 
                     Toast.makeText(AuthorizationActivity.this, "can't find user!", Toast.LENGTH_LONG).show();
