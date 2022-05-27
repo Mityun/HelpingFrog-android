@@ -35,7 +35,7 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
 
     public static final String API_TEST = "API_TEST";
     private final Context context;
-    public static final String BASE_URL = "http://192.168.1.2:34500";
+    public static final String BASE_URL = "https://helping-frog.herokuapp.com/";
     private  Response.ErrorListener errorListener;
 
 
@@ -55,7 +55,7 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 
-        String url = BASE_URL + "/task";
+        String url = BASE_URL + "task";
 
         JsonArrayRequest arrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
@@ -105,7 +105,7 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 
-        String url = BASE_URL + "/author";
+        String url = BASE_URL + "author";
 
         JsonArrayRequest arrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
@@ -148,7 +148,7 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 
-        String url = BASE_URL + "/importance";
+        String url = BASE_URL + "importance";
 
         JsonArrayRequest arrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
@@ -185,7 +185,7 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 
-        String url = BASE_URL + "/task";
+        String url = BASE_URL + "task";
 
         StringRequest request = new StringRequest(
                 Request.Method.POST,
@@ -221,7 +221,7 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 
-        String url = BASE_URL + "/task/" + id;
+        String url = BASE_URL + "task/" + id;
 
         StringRequest request = new StringRequest(
                 Request.Method.PUT,
@@ -241,7 +241,7 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
 
                 Map <String, String> params = new HashMap<>();
 
-                params.put("nameTask", newTaskName);
+                params.put("taskName", newTaskName);
                 params.put("nameAuthor", newAuthorName);
                 params.put("nameImportance", newImportanceName);
                 return params;
@@ -257,7 +257,7 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 
-        String url = BASE_URL + "/task" + "/" + id;
+        String url = BASE_URL + "task/" + id;
 
         StringRequest request = new StringRequest(
                 Request.Method.DELETE,

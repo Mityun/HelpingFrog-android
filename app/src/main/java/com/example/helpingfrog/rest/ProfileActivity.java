@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.helpingfrog.MainActivity;
@@ -58,6 +59,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         Button btn_to_tasks = findViewById(R.id.btnp_to_tasks);
         button.setOnClickListener(this);
         btn_to_tasks.setOnClickListener(this);
+
+        rvNft.setLayoutManager(new GridLayoutManager(this, 3));
     }
     @Override
     public void onClick(View v) {
@@ -94,21 +97,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    // сохранение состояния
-//    @Override
-//    protected void onSaveInstanceState(Bundle outState) {
-//
-//        outState.putString(nameVariableKey, name);
-//        super.onSaveInstanceState(outState);
-//    }
-//    // получение ранее сохраненного состояния
-//    @Override
-//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-//        super.onRestoreInstanceState(savedInstanceState);
-//
-//        name = savedInstanceState.getString(nameVariableKey);
-//        nameView.setText(name);
-//    }
+
 
     private void setInitialData(){
 
@@ -118,10 +107,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         states.add(new State (R.drawable.frog_nft));
         states.add(new State (R.drawable.frog_nft));
         states.add(new State (R.drawable.frog_nft));
-        states.add(new State (R.drawable.frog_nft));
-        states.add(new State (R.drawable.frog_nft));
-        states.add(new State (R.drawable.frog_nft));
-        states.add(new State (R.drawable.frog_nft));
-        states.add(new State (R.drawable.frog_nft));
+
     }
 }
