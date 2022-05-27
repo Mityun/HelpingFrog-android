@@ -48,6 +48,19 @@
         android:layout_marginRight="30dp"
         android:layout_marginBottom="50dp" />
 
+    <androidx.appcompat.widget.AppCompatButton
+
+        android:id="@+id/btnt_to_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:background="@color/deepestOceanMist"
+        android:text="profile"
+        android:textColor="@color/white"
+        android:fontFamily="@font/montserrat_alternates_semibold"
+
+        />
+
 
 
 </FrameLayout>

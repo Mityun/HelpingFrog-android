@@ -45,7 +45,7 @@
                 android:textSize="25dp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/montserrat_alternates_semibold"
-                android:text="@string/login_name"
+                android:text="@string/dsmrnvv"
                 android:background="@drawable/info_bck"
                 />
 
@@ -56,7 +56,6 @@
                 android:layout_gravity="left"
                 android:layout_margin="10dp"
                 android:fontFamily="@font/montserrat_alternates"
-                android:text="total hours"
                 android:textColor="@color/white"
                 android:textSize="25dp"
                 android:background="@drawable/info_bck"
@@ -85,9 +84,22 @@
         </LinearLayout>
 
 
+
     </LinearLayout>
 
 
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnp_to_tasks"
+            android:background="@color/deepestOceanMist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:text="@string/tasks"
+            android:textColor="@color/white"
+            android:fontFamily="@font/montserrat_alternates_semibold"
+
+
+            />
 
 
 </FrameLayout>

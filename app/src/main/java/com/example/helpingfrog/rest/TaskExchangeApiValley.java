@@ -47,7 +47,7 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
     @Override
     public void fillTask() {
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
 
             NoDb.TASK_LIST.add(new Task(String.format("%s", i), new Author(i, "AuthorName"), new Importance(i + 1, "ImportanceName")));
 
@@ -97,7 +97,7 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
     @Override
     public void fillAuthor() {
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
 
             NoDb.AUTHOR_LIST.add(new Author(i, "AuthorName"));
 
@@ -140,7 +140,7 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
     @Override
     public void fillImportance() {
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
 
             NoDb.IMPORTANCE_LIST.add(new Importance(i, "ImportanceName"));
 

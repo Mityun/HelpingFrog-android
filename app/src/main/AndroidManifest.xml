@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.helpingfrog">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -34,6 +35,11 @@
         </activity>
         <activity
             android:name=".rest.AuthorizationActivity"
+            android:screenOrientation="locked"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".InfoActivity"
             android:screenOrientation="locked"
             android:exported="true">
         </activity>

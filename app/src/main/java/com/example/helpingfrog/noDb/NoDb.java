@@ -22,4 +22,6 @@ public class NoDb {
     public static final List<Task> TASK_LIST = new ArrayList<Task>();
     public static final List<Author> AUTHOR_LIST = new ArrayList<Author>();
     public static final List<Importance> IMPORTANCE_LIST = new ArrayList<Importance>();
+
+    public static int TOTAL_HOURS = 0;
 }
