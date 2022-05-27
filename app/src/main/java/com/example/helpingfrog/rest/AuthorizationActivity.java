@@ -57,6 +57,7 @@ public class AuthorizationActivity extends AppCompatActivity implements View.OnC
                     Intent i = new Intent(AuthorizationActivity.this, ProfileActivity.class);
                     startActivity(i);
                 }else{
+
                     Toast.makeText(AuthorizationActivity.this, "can't find user!", Toast.LENGTH_LONG).show();
                 }
 

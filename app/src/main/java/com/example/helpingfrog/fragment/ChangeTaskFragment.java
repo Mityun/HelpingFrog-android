@@ -23,6 +23,8 @@ import com.example.helpingfrog.rest.TaskExchangeApiValley;
 
 public class ChangeTaskFragment extends Fragment {
 
+    private final int SERVER_STATE = 1;
+
     private AppCompatSpinner spAuthor, spImportance;
     private AuthorSpinnerAdapter authorSpinnerAdapter;
     private ImportanceSpinnerAdapter importanceSpinnerAdapter;
@@ -53,12 +55,29 @@ public class ChangeTaskFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                new TaskExchangeApiValley(getContext()).updateTask(
-                        task.getId(),
-                        etTaskNAme.getText().toString(),
-                        ((Author)spAuthor.getSelectedItem()).getName(),
-                        ((Importance)spImportance.getSelectedItem()).getName()
-                );
+                if (SERVER_STATE == 1){
+
+                    int id = task.getId();
+
+                    NoDb.TASK_LIST.remove(id);
+
+                    NoDb.TASK_LIST.add(
+                            new Task(id,
+                                    etTaskNAme.getText().toString(),
+                                    (Author)spAuthor.getSelectedItem(),
+                            (Importance)spImportance.getSelectedItem())
+                    );
+
+
+                }else {
+
+                    new TaskExchangeApiValley(getContext()).updateTask(
+                            task.getId(),
+                            etTaskNAme.getText().toString(),
+                            ((Author) spAuthor.getSelectedItem()).getName(),
+                            ((Importance) spImportance.getSelectedItem()).getName()
+                    );
+                }
 
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()

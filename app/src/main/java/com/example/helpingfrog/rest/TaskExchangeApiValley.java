@@ -25,6 +25,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Formatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -34,7 +35,7 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
 
     public static final String API_TEST = "API_TEST";
     private final Context context;
-    public static final String BASE_URL = "http://192.168.1.2:8081";
+    public static final String BASE_URL = "http://192.168.1.2:34500";
     private  Response.ErrorListener errorListener;
 
 
@@ -48,7 +49,7 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
 
         for (int i = 0; i < 10; i++) {
 
-            NoDb.TASK_LIST.add(new Task("1", new Author(i, "N"), new Importance(i + 1, "S")));
+            NoDb.TASK_LIST.add(new Task(String.format("%s", i), new Author(i, "AuthorName"), new Importance(i + 1, "ImportanceName")));
 
         }
 
@@ -95,6 +96,13 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
 
     @Override
     public void fillAuthor() {
+
+        for (int i = 0; i < 10; i++) {
+
+            NoDb.AUTHOR_LIST.add(new Author(i, "AuthorName"));
+
+        }
+
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 
         String url = BASE_URL + "/author";
@@ -131,6 +139,12 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
 
     @Override
     public void fillImportance() {
+
+        for (int i = 0; i < 10; i++) {
+
+            NoDb.IMPORTANCE_LIST.add(new Importance(i, "ImportanceName"));
+
+        }
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 
@@ -191,9 +205,9 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
 
                 Map <String, String> params = new HashMap<>();
 
-                params.put("nameTask", task.getName());
-                params.put("nameAuthor", task.getAuthor().getName());
-                params.put("nameImportance", task.getImportance().getName());
+                params.put("name", task.getName());
+                params.put("authorId", task.getAuthor().getName());
+                params.put("importanceId", task.getImportance().getName());
                 return params;
             }
         };

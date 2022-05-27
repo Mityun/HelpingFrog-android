@@ -25,6 +25,8 @@ import java.util.zip.Inflater;
 
 public class AddTaskFragment extends Fragment {
 
+    public final int SERVER_STATE = 1;
+
     private AppCompatSpinner spAuthor, spImportance;
     private AuthorSpinnerAdapter authorSpinnerAdapter;
     private ImportanceSpinnerAdapter importanceSpinnerAdapter;
@@ -51,13 +53,24 @@ public class AddTaskFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                new TaskExchangeApiValley(getContext()).addTask(
-                        new Task(
-                                etTaskNAme.getText().toString(),
-                                ((Author)spAuthor.getSelectedItem()),
-                                ((Importance)spImportance.getSelectedItem())
-                        )
-                );
+                if (SERVER_STATE == 1){
+
+                    NoDb.TASK_LIST.add(new Task(
+                            etTaskNAme.getText().toString(),
+                            ((Author)spAuthor.getSelectedItem()),
+                            ((Importance)spImportance.getSelectedItem())
+                    ));
+
+                }else {
+
+                    new TaskExchangeApiValley(getContext()).addTask(
+                            new Task(
+                                    etTaskNAme.getText().toString(),
+                                    ((Author) spAuthor.getSelectedItem()),
+                                    ((Importance) spImportance.getSelectedItem())
+                            )
+                    );
+                }
 
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
