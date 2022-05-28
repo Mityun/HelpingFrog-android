@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.helpingfrog">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -13,12 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HelpingFrog">
         <activity
-            android:name=".rest.MainActivity"
+            android:name=".MainActivity"
             android:screenOrientation="locked"
             android:exported="true">
         </activity>
         <activity
             android:name=".rest.ProfileActivity"
+            android:screenOrientation="locked"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".rest.WelcomeActivity"
             android:screenOrientation="locked"
             android:exported="true">
             <intent-filter>
@@ -28,12 +34,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".rest.WelcomeActivity"
+            android:name=".rest.AuthorizationActivity"
             android:screenOrientation="locked"
             android:exported="true">
         </activity>
         <activity
-            android:name=".rest.AuthorizationActivity"
+            android:name=".InfoActivity"
             android:screenOrientation="locked"
             android:exported="true">
         </activity>

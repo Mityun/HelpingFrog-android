@@ -14,6 +14,7 @@ import android.widget.EditText;
 import com.example.helpingfrog.R;
 import com.example.helpingfrog.adapter.AuthorSpinnerAdapter;
 import com.example.helpingfrog.adapter.ImportanceSpinnerAdapter;
+import com.example.helpingfrog.databinding.FragmentAddTaskBinding;
 import com.example.helpingfrog.domain.Author;
 import com.example.helpingfrog.domain.Importance;
 import com.example.helpingfrog.domain.Task;
@@ -25,39 +26,44 @@ import java.util.zip.Inflater;
 
 public class AddTaskFragment extends Fragment {
 
-    private AppCompatSpinner spAuthor, spImportance;
-    private AuthorSpinnerAdapter authorSpinnerAdapter;
-    private ImportanceSpinnerAdapter importanceSpinnerAdapter;
-    private EditText etTaskNAme;
-    private AppCompatButton btnAdd;
+    public final int SERVER_STATE = 1;
+
+    private FragmentAddTaskBinding binding = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_add_task, container, false);
+        binding = FragmentAddTaskBinding.inflate(inflater);
 
-        spAuthor = view.findViewById(R.id.sp_author);
-        spImportance = view.findViewById(R.id.sp_importance);
-        btnAdd = view.findViewById(R.id.btn_add);
-        etTaskNAme = view.findViewById(R.id.et_taskName);
+        AuthorSpinnerAdapter authorSpinnerAdapter = new AuthorSpinnerAdapter(getContext(), NoDb.AUTHOR_LIST);
+        ImportanceSpinnerAdapter importanceSpinnerAdapter = new ImportanceSpinnerAdapter(getContext(), NoDb.IMPORTANCE_LIST);
+        binding.spAuthor.setAdapter(authorSpinnerAdapter);
+        binding.spImportance.setAdapter(importanceSpinnerAdapter);
 
-        authorSpinnerAdapter = new AuthorSpinnerAdapter(getContext(), NoDb.AUTHOR_LIST);
-        importanceSpinnerAdapter = new ImportanceSpinnerAdapter(getContext(), NoDb.IMPORTANCE_LIST);
-        spAuthor.setAdapter(authorSpinnerAdapter);
-        spImportance.setAdapter(importanceSpinnerAdapter);
-
-        btnAdd.setOnClickListener(new View.OnClickListener() {
+        binding.btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                new TaskExchangeApiValley(getContext()).addTask(
-                        new Task(
-                                etTaskNAme.getText().toString(),
-                                ((Author)spAuthor.getSelectedItem()),
-                                ((Importance)spImportance.getSelectedItem())
-                        )
-                );
+                if (SERVER_STATE == 1) {
+
+                    NoDb.TASK_LIST.add(new Task(
+                            binding.etTaskName.getText().toString(),
+                            (Author) binding.spAuthor.getSelectedItem(),
+                            (Importance) binding.spImportance.getSelectedItem()
+                    ));
+
+
+
+                } else {
+
+                    new TaskExchangeApiValley(getContext()).addTask(
+                            new Task(
+                                    binding.etTaskName.getText().toString(),
+                                    ((Author) binding.spAuthor.getSelectedItem()),
+                                    ((Importance) binding.spImportance.getSelectedItem())
+                            )
+                    );
+                }
 
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
@@ -66,8 +72,6 @@ public class AddTaskFragment extends Fragment {
             }
         });
 
-
-
-        return view;
+        return binding.getRoot();
     }
 }

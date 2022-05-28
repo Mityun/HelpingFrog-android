@@ -30,11 +30,10 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.btn_message_style:
-                        Toast.makeText(WelcomeActivity.this, "YES!!", Toast.LENGTH_SHORT).show();
-
+                        Intent i = new Intent(WelcomeActivity.this, AuthorizationActivity.class);
+                        startActivity(i);
                 }
-                Intent i = new Intent(WelcomeActivity.this, AuthorizationActivity.class);
-                startActivity(i);
+
             }
         });
     }

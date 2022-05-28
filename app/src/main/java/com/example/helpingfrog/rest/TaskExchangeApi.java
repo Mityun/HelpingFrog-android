@@ -1,6 +1,7 @@
 package com.example.helpingfrog.rest;
 
 import com.example.helpingfrog.domain.Task;
+import com.example.helpingfrog.domain.User;
 
 public interface TaskExchangeApi {
 
@@ -20,6 +21,8 @@ public interface TaskExchangeApi {
     );
 
     void deleteTask(int id);
+
+    User getUser();
 
 
 

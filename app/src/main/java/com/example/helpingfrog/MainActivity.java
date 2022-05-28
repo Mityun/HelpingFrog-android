@@ -1,4 +1,4 @@
-package com.example.helpingfrog.rest;
+package com.example.helpingfrog;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,59 +7,58 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import com.example.helpingfrog.R;
 import com.example.helpingfrog.adapter.TaskAdapter;
+import com.example.helpingfrog.databinding.ActivityMainBinding;
 import com.example.helpingfrog.domain.Author;
 import com.example.helpingfrog.domain.Importance;
 import com.example.helpingfrog.domain.Task;
 import com.example.helpingfrog.fragment.AddTaskFragment;
 import com.example.helpingfrog.noDb.NoDb;
+import com.example.helpingfrog.rest.AuthorizationActivity;
+import com.example.helpingfrog.rest.ComingSoonActivity;
+import com.example.helpingfrog.rest.ProfileActivity;
 import com.example.helpingfrog.rest.TaskExchangeApiValley;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private RecyclerView rvTask;
+    private static final int SERVER_STATE = 1;
     private TaskAdapter taskAdapter;
     private TaskExchangeApiValley taskExchangeApiValley;
 
-    private AppCompatButton btnAdd;
 
     private ItemTouchHelper.SimpleCallback simpleCallback;
+
+    private ActivityMainBinding binding = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         taskExchangeApiValley = new TaskExchangeApiValley(this);
         taskExchangeApiValley.fillAuthor();
         taskExchangeApiValley.fillImportance();
         taskExchangeApiValley.fillTask();
 
-        rvTask = findViewById(R.id.rv_task);
-
         taskAdapter = new TaskAdapter(this, NoDb.TASK_LIST);
-        rvTask.setAdapter(taskAdapter);
+        binding.rvTask.setAdapter(taskAdapter);
 
-        btnAdd = findViewById(R.id.btn_add_task);
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                AddTaskFragment addTaskFragment = new AddTaskFragment();
-
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .add(R.id.fl_main, addTaskFragment)
-                .commit();
-            }
-        });
-
+        Button btn_to_profile = binding.btntToProfile;
+        binding.btnAddTask.setOnClickListener(this);
+        btn_to_profile.setOnClickListener(this);
 
         simpleCallback = new ItemTouchHelper.SimpleCallback(
                 0,
@@ -76,7 +75,13 @@ public class MainActivity extends AppCompatActivity {
                 Task task = NoDb.TASK_LIST.get(viewHolder.getAdapterPosition());
 
                 if (direction == ItemTouchHelper.LEFT) {
-                    taskExchangeApiValley.deleteTask(task.getId());
+                    if (SERVER_STATE == 1){
+                        NoDb.TOTAL_HOURS ++;
+                        NoDb.TASK_LIST.remove(task.getId());
+
+                    }else {
+                        taskExchangeApiValley.deleteTask(task.getId());
+                    }
                 }
 
             }
@@ -84,6 +89,24 @@ public class MainActivity extends AppCompatActivity {
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper((simpleCallback));
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btn_add_task:
+
+                AddTaskFragment addTaskFragment = new AddTaskFragment();
+
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.fl_main, addTaskFragment)
+                        .commit();
+                break;
+            case R.id.btnt_to_profile:
+                Intent i = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(i);
+        }
     }
 
     public void updateAdapter(){
@@ -108,8 +131,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void update() {
-
-        taskAdapter.notifyDataSetChanged();
+    public static boolean hasConnection(final Context context)
+    {
+        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (wifiInfo != null && wifiInfo.isConnected())
+        {
+            return true;
+        }
+        wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (wifiInfo != null && wifiInfo.isConnected())
+        {
+            return true;
+        }
+        wifiInfo = cm.getActiveNetworkInfo();
+        if (wifiInfo != null && wifiInfo.isConnected())
+        {
+            return true;
+        }
+        return false;
     }
 }

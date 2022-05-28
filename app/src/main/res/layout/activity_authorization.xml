@@ -49,6 +49,7 @@
                 android:textSize="20sp" />
 
             <EditText
+                android:inputType="textPassword"
                 android:layout_marginTop="10dp"
                 android:id="@+id/auth_password"
                 android:layout_width="match_parent"
@@ -116,6 +117,7 @@
                 android:textSize="20sp" />
 
             <EditText
+                android:inputType="textPassword"
                 android:layout_marginTop="10dp"
                 android:id="@+id/register_password"
                 android:layout_width="match_parent"
@@ -137,7 +139,7 @@
                 android:id="@+id/btn_confirm_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/confirm"
+                android:text="@string/register"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
                 android:background="@drawable/btn_bck"
