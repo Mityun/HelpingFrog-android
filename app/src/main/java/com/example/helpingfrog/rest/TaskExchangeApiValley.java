@@ -16,20 +16,20 @@ import com.example.helpingfrog.MainActivity;
 import com.example.helpingfrog.domain.Author;
 import com.example.helpingfrog.domain.Importance;
 import com.example.helpingfrog.domain.Task;
+import com.example.helpingfrog.domain.User;
 import com.example.helpingfrog.mapper.AuthorMapper;
 import com.example.helpingfrog.mapper.ImportanceMapper;
 import com.example.helpingfrog.mapper.TaskMapper;
+import com.example.helpingfrog.mapper.UserMapper;
 import com.example.helpingfrog.noDb.NoDb;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Formatter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class TaskExchangeApiValley implements TaskExchangeApi{
 
@@ -46,12 +46,6 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
 
     @Override
     public void fillTask() {
-
-        for (int i = 0; i < 5; i++) {
-
-            NoDb.TASK_LIST.add(new Task(String.format("%s", i), new Author(i, "AuthorName"), new Importance(i + 1, "ImportanceName")));
-
-        }
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 
@@ -97,12 +91,6 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
     @Override
     public void fillAuthor() {
 
-        for (int i = 0; i < 5; i++) {
-
-            NoDb.AUTHOR_LIST.add(new Author(i, "AuthorName"));
-
-        }
-
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 
         String url = BASE_URL + "author";
@@ -139,12 +127,6 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
 
     @Override
     public void fillImportance() {
-
-        for (int i = 0; i < 5; i++) {
-
-            NoDb.IMPORTANCE_LIST.add(new Importance(i, "ImportanceName"));
-
-        }
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 
@@ -206,8 +188,8 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
                 Map <String, String> params = new HashMap<>();
 
                 params.put("name", task.getName());
-                params.put("authorId", task.getAuthor().getName());
-                params.put("importanceId", task.getImportance().getName());
+                params.put("authorId", Integer.toString(task.getAuthor().getId()));
+                params.put("importanceId", Integer.toString(task.getImportance().getId()));
                 return params;
             }
         };
@@ -274,6 +256,41 @@ public class TaskExchangeApiValley implements TaskExchangeApi{
 
         requestQueue.add(request);
 
+    }
+
+    @Override
+    public User getUser() {
+
+        final User[] user = new User[1];
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+        String url = BASE_URL + "user/login";
+        JsonArrayRequest arrayRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+
+
+                        try {
+                                JSONObject jsonObject = response.getJSONObject(1);
+                                user[0] = UserMapper.userFromJson(jsonObject);
+
+                        } catch (JSONException e) {
+
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                errorListener
+        );
+
+        requestQueue.add(arrayRequest);
+
+        return user[0];
     }
 }
 

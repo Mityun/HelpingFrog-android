@@ -7,13 +7,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.helpingfrog.R;
 import com.example.helpingfrog.adapter.TaskAdapter;
+import com.example.helpingfrog.databinding.ActivityMainBinding;
 import com.example.helpingfrog.domain.Author;
 import com.example.helpingfrog.domain.Importance;
 import com.example.helpingfrog.domain.Task;
@@ -29,32 +33,31 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final int SERVER_STATE = 1;
-    private RecyclerView rvTask;
     private TaskAdapter taskAdapter;
     private TaskExchangeApiValley taskExchangeApiValley;
 
-    private AppCompatButton btnAdd;
 
     private ItemTouchHelper.SimpleCallback simpleCallback;
+
+    private ActivityMainBinding binding = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         taskExchangeApiValley = new TaskExchangeApiValley(this);
         taskExchangeApiValley.fillAuthor();
         taskExchangeApiValley.fillImportance();
         taskExchangeApiValley.fillTask();
 
-        rvTask = findViewById(R.id.rv_task);
-
         taskAdapter = new TaskAdapter(this, NoDb.TASK_LIST);
-        rvTask.setAdapter(taskAdapter);
+        binding.rvTask.setAdapter(taskAdapter);
 
-        btnAdd = findViewById(R.id.btn_add_task);
-        Button btn_to_profile = findViewById(R.id.btnt_to_profile);
-        btnAdd.setOnClickListener(this);
+        Button btn_to_profile = binding.btntToProfile;
+        binding.btnAddTask.setOnClickListener(this);
         btn_to_profile.setOnClickListener(this);
 
         simpleCallback = new ItemTouchHelper.SimpleCallback(
@@ -128,8 +131,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void update() {
-
-        taskAdapter.notifyDataSetChanged();
+    public static boolean hasConnection(final Context context)
+    {
+        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (wifiInfo != null && wifiInfo.isConnected())
+        {
+            return true;
+        }
+        wifiInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (wifiInfo != null && wifiInfo.isConnected())
+        {
+            return true;
+        }
+        wifiInfo = cm.getActiveNetworkInfo();
+        if (wifiInfo != null && wifiInfo.isConnected())
+        {
+            return true;
+        }
+        return false;
     }
 }

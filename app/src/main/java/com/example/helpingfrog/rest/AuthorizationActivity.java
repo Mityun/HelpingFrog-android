@@ -28,6 +28,9 @@ public class AuthorizationActivity extends AppCompatActivity implements View.OnC
 
     private Button accept_register_btn;
 
+    private TaskExchangeApiValley taskExchangeApiValley;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,8 @@ public class AuthorizationActivity extends AppCompatActivity implements View.OnC
         accept_auth_btn.setOnClickListener(this);
         accept_register_btn.setOnClickListener(this);
 
+        taskExchangeApiValley = new TaskExchangeApiValley(this);
+
     }
 
     @Override
@@ -52,7 +57,7 @@ public class AuthorizationActivity extends AppCompatActivity implements View.OnC
             case R.id.btn_confirm_auth:
                 if (auth_login.getText().toString().trim().equals("") | auth_password.getText().toString().trim().equals("")) {
                     Toast.makeText(AuthorizationActivity.this, R.string.auth, Toast.LENGTH_SHORT).show();
-                } else if(auth_login.getText().toString().trim().equals("Dsmrnvv") & auth_password.getText().toString().trim().equals("pass")){
+                } else if(auth_login.getText().toString().trim().equals("Dsmrnv") & auth_password.getText().toString().trim().equals("pass")){
                     Toast.makeText(AuthorizationActivity.this, "Successful authorization!!", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(AuthorizationActivity.this, ProfileActivity.class);
                     startActivity(i);
